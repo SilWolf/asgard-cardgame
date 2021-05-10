@@ -1,9 +1,11 @@
 import { Game } from 'boardgame.io'
 import { INVALID_MOVE } from 'boardgame.io/core'
 
-type GameStore = {
+export type TicTacToeStore = {
 	cells: string[]
 }
+
+type TicTacToeGame = Game<TicTacToeStore>
 
 const isVictory = (cells: string[]): boolean => {
 	const positions = [
@@ -28,7 +30,7 @@ const isVictory = (cells: string[]): boolean => {
 const isDraw = (cells: string[]): boolean =>
 	cells.filter((c) => c === null).length === 0
 
-export const TicTacToe: Game<GameStore> = {
+export const TicTacToe: TicTacToeGame = {
 	setup: () => ({ cells: Array(9).fill(null) }),
 
 	turn: {
